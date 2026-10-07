@@ -1,0 +1,117 @@
+@import "tailwindcss";
+
+/*
+ * Brand palette — ONLY colors from the Kinetic Colorway PDF and the
+ * Kinetic Web Colors & Accessibility PDF. Tailwind's default palette is
+ * cleared so off-brand colors cannot be used by accident.
+ *
+ * Contrast rules (WCAG AA):
+ *  - Text on white: navy, purple, purple-dark, blue-dark, gray-500 only.
+ *  - Green, blue and yellow are fills only; put navy text on them.
+ *  - White text on navy, purple, purple-dark or black.
+ *  - Black (#000) is used only behind the white-text logo, as the logo rules require.
+ */
+@theme {
+  --color-*: initial;
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-transparent: transparent;
+  --color-current: currentColor;
+
+  --color-navy: #00002d;
+
+  --color-green: #26b170;
+  --color-green-light: #6dd3a3;
+  --color-green-dark: #209a61;
+
+  --color-blue: #04b2e2;
+  --color-blue-light: #9eeaf9;
+  --color-blue-dark: #027693;
+
+  --color-purple: #931d69;
+  --color-purple-light: #d062a9;
+  --color-purple-dark: #7e1458;
+
+  --color-yellow: #f5ff1e;
+  --color-yellow-light: #fdffcb;
+
+  --color-gray-50: #f2f2f4;
+  --color-gray-100: #e6e6e6;
+  --color-gray-300: #cecece;
+  --color-gray-500: #757575;
+
+  /* Figtree is the ONLY typeface (Kinetic brand). No fallback brand fonts. */
+  --font-*: initial;
+  --font-sans: var(--font-figtree), sans-serif;
+  --default-font-family: var(--font-figtree), sans-serif;
+  --default-mono-font-family: var(--font-figtree), sans-serif;
+
+  /*
+   * Only three Figtree weights are allowed (Kinetic typography guide):
+   *  - black  (900): headlines, subheads, prices, callouts, buttons
+   *  - bold   (700): large captions and pull quotes
+   *  - medium (500): body copy, bullet lists, fine print
+   */
+  --font-weight-*: initial;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+  --font-weight-black: 900;
+}
+
+/* Base styles live in @layer base so Tailwind utility classes can still override them. */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: var(--color-white);
+    color: var(--color-navy);
+    font-weight: 500; /* Figtree Medium for body copy */
+  }
+
+  /* Headlines and subheads: Figtree Black. Text is written lowercase in source (brand rule). */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: 900;
+    letter-spacing: -0.01em;
+  }
+
+  /* Inputs and buttons inherit Figtree instead of the browser default font. */
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+  }
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-purple);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 6px var(--color-white);
+}
+
+details > summary {
+  list-style: none;
+  cursor: pointer;
+}
+details > summary::-webkit-details-marker {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}

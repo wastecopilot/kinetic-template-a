@@ -1,0 +1,33 @@
+# dependencies
+node_modules
+
+# Next.js build output
+.next
+out
+next-env.d.ts
+*.tsbuildinfo
+
+# environment variables and secrets
+.env*
+
+# Vercel
+.vercel
+
+# screenshots, temp and comparison output (never commit)
+screenshots/
+temp/
+tmp/
+comparison/
+compare/
+*.screenshot.png
+backup-run/
+
+# Python cache from scripts/
+__pycache__/
+*.pyc
+
+# logs and OS files
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
