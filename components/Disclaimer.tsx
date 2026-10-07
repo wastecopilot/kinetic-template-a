@@ -1,9 +1,9 @@
-import { disclaimer, finePrintFooter } from "@/data/disclaimer";
+import { disclaimerSections } from "@/data/disclaimer";
 
 /**
- * The ONE offer disclaimer block for every page of both templates.
+ * The ONE offer disclaimer block, shown on every page.
  * Text lives in /data/disclaimer.ts. "See offer details" links target #offer-conditions.
- * Style: Figtree Medium, small fine print.
+ * Style: lowercase subheads in Figtree Black; body in Figtree Medium, small fine print.
  */
 export function Disclaimer() {
   return (
@@ -16,14 +16,16 @@ export function Disclaimer() {
         <h2 id="offer-conditions-title" className="text-base">
           offer details and disclaimers
         </h2>
-        <div className="mt-3 space-y-2 text-xs font-medium leading-relaxed">
-          {disclaimer.map((paragraph, i) => (
-            <p key={i}>{paragraph}</p>
-          ))}
-        </div>
-        <div className="mt-4 space-y-1 border-t border-gray-300 pt-4 text-xs font-medium leading-relaxed">
-          {finePrintFooter.map((line, i) => (
-            <p key={i}>{line}</p>
+        <div className="mt-4 grid gap-x-10 gap-y-5 md:grid-cols-2 lg:grid-cols-3">
+          {disclaimerSections.map((section) => (
+            <div key={section.heading}>
+              <h3 className="text-sm">{section.heading}</h3>
+              <ul className="mt-2 space-y-1.5 text-xs font-medium leading-relaxed">
+                {section.items.map((item, i) => (
+                  <li key={i}>{item}</li>
+                ))}
+              </ul>
+            </div>
           ))}
         </div>
       </div>
